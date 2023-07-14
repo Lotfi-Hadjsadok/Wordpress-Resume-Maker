@@ -1,8 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
-const configuration = new Configuration({
-  organization: "org-GeG4y0L7mCrL7YcR5wZll8Ix",
-  apiKey: "test"
-});
+import "./keys";
+const configuration = new Configuration(config);
 const openai = new OpenAIApi(configuration);
 
 jQuery("#tools-tags").selectize({
