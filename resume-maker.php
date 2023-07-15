@@ -18,7 +18,9 @@ function enqueue_scirpts(){
     wp_enqueue_style( 'selectize-css', 'https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.13.3/css/selectize.default.min.css' );
 
     // Enqueue your own stylesheet
-    wp_enqueue_style( 'my-style', get_template_directory_uri() . '/css/style.css' );
+    wp_enqueue_style( 'my-style', plugin_dir_url(__FILE__) . 'src/css/style.css' );
+    wp_enqueue_style( 'material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
+    
 
 }
 add_action('wp_enqueue_scripts', 'enqueue_scirpts');
@@ -36,9 +38,17 @@ add_action('wp',function(){
 });
 
 
+
 function resume_maker(){
+$primary_color = '#52ad9c';
+
     ob_start();
     ?>
+<style>
+:root {
+    --primary-color: <?php echo $primary_color ?>;
+}
+</style>
 <form class="resume_form" method="POST">
     <label for="">
         <p>Full Name *</p>
@@ -59,7 +69,10 @@ function resume_maker(){
     </label>
     <label for="">
         <p>Address *</p>
-        <input type="text" required name="address" value="Bab Ezzouar,Algeria" placeholder="Bab Ezzouar,Algeria">
+        <div class="address_input_container">
+            <input type="text" required name="state" value="Alger" placeholder="Alger">
+            <input type="text" required name="city" value="Bab Ezzouar" placeholder="Bab Ezzouar">
+        </div>
     </label>
     <label for="">
         <p>Portfolio Link</p>
@@ -76,75 +89,38 @@ function resume_maker(){
             placeholder="Github,Gitlab,Slack...">
     </label>
 
-    <label for="">
-        <p>Work Experience *</p>
-        <div class="workedin">
-            <input type="text" name="workedin[]" value="Curalinc Enterprise as a Wordpress Developer"
-                placeholder="Curalinc Enterprise as a wordpress developer">
-            <div style="display: flex;gap:5px;margin-top:5px;margin-bottom:20px">
-                <input type="number" required name="workedin_start[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="Start Year" />
-                <input type="number" name="workedin_end[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="End Year" />
-            </div>
+    <label class="workedin_container" for="">
+        <div class="field_label">
+            <p>Work Experience *</p>
+            <i class="material-icons add_workedin">add</i>
         </div>
         <div class="workedin">
             <input type="text" name="workedin[]" value="Curalinc Enterprise as a Wordpress Developer"
                 placeholder="Curalinc Enterprise as a wordpress developer">
-            <div style="display: flex;gap:5px;margin-top:5px;margin-bottom:20px">
-                <input type="number" required name="workedin_start[]" style="width:50%" min="1900" max="2099" step="1"
+            <div>
+                <input type="number" required name="workedin_start[]" min="1900" max="2099" step="1"
                     placeholder="Start Year" />
-                <input type="number" name="workedin_end[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="End Year" />
+                <input type="number" name="workedin_end[]" min="1900" max="2099" step="1" placeholder="End Year" />
             </div>
         </div>
-        <div class="workedin">
-            <input type="text" name="workedin[]" value="Curalinc Enterprise as a Wordpress Developer"
-                placeholder="Curalinc Enterprise as a wordpress developer">
-            <div style="display: flex;gap:5px;margin-top:5px;margin-bottom:20px">
-                <input type="number" required name="workedin_start[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="Start Year" />
-                <input type="number" name="workedin_end[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="End Year" />
-            </div>
-        </div>
-
-
-
+        <!-- Worked In repeater here -->
     </label>
 
-    <label for="">
-        <p>Education *</p>
-        <div class="education">
-            <input type="text" name="education[]" value="Licence Degree at Boumerdes University"
-                placeholder="Licence Degree at Boumerdes University">
-            <div style="display: flex;gap:5px;margin-top:5px;margin-bottom:20px">
-                <input type="number" required name="education_start[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="Start Year" />
-                <input type="number" name="education_end[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="End Year" />
-            </div>
+    <label class="education_container" for="">
+        <div class="field_label">
+            <p>Education *</p>
+            <i class="material-icons add_education">add</i>
         </div>
         <div class="education">
             <input type="text" name="education[]" value="Licence Degree at Boumerdes University"
                 placeholder="Licence Degree at Boumerdes University">
-            <div style="display: flex;gap:5px;margin-top:5px;margin-bottom:20px">
-                <input type="number" required name="education_start[]" style="width:50%" min="1900" max="2099" step="1"
+            <div>
+                <input type="number" required name="education_start[]" min="1900" max="2099" step="1"
                     placeholder="Start Year" />
-                <input type="number" name="education_end[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="End Year" />
+                <input type="number" name="education_end[]" min="1900" max="2099" step="1" placeholder="End Year" />
             </div>
         </div>
-        <div class="education">
-            <input type="text" name="education[]" value="Licence Degree at Boumerdes University"
-                placeholder="Licence Degree at Boumerdes University">
-            <div style="display: flex;gap:5px;margin-top:5px;margin-bottom:20px">
-                <input type="number" required name="education_start[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="Start Year" />
-                <input type="number" name="education_end[]" style="width:50%" min="1900" max="2099" step="1"
-                    placeholder="End Year" />
-            </div>
-        </div>
+        <!-- Education Repeater here -->
     </label>
 
     <label for="">
@@ -154,91 +130,23 @@ function resume_maker(){
 
     <label for="">
         <p>Colors *</p>
-        <div style="display: flex;gap:10px;margin:10px 0">
+        <div class="colors_fields">
             <p>Primary</p>
-            <input type="color" name="main_color" value="#000040" style="width: 50%;" required value="4 years">
+            <input type="color" name="main_color" value="<?php echo $primary_color ?>" required>
 
             <p>Secondary</p>
-            <input type="color" name="secondary_color" value="#ffffff" style="width: 50%;" required value="4 years">
+            <input type="color" name="secondary_color" value="#ffffff" required>
         </div>
     </label>
-
-    <input class="resume_generate" type="submit" name="generate_cv" value="Generate">
+    <label class="summary" for="">
+        <p>Summary</p>
+        <textarea rows="5" name="summary"></textarea>
+    </label>
+    <button class="summary_generate">Generate Summary using IA <br /><br />( according to your infos )</button>
+    <input class="resume_generate" type="submit" name="generate_cv" value="Create My Resume">
 </form>
 
 <div class="resume_data" style="display:none"></div>
-<style>
-.selectize-input>input[placeholder] {
-    font-size: 1rem;
-}
-
-.selectize-control.multi .selectize-input.has-items {
-    padding: 0.7em !important;
-}
-
-.selectize-input {
-    padding: 1em;
-    font-size: 1rem;
-}
-
-.resume_data {
-    background-color: white;
-    margin-top: 10px;
-    padding: 20px;
-    box-shadow: 0px 0px 0px gray;
-}
-
-.resume_form {
-    display: grid;
-    gap: 20px;
-    grid-template-columns: 1fr 1fr;
-}
-
-@media screen and (max-width:750px) {
-    .resume_form {
-        grid-template-columns: 1fr !important;
-    }
-}
-
-
-
-
-.resume_form label {
-    width: 100%;
-}
-
-.resume_form label p {
-    margin: 0;
-    font-weight: bold;
-}
-
-.resume_form label :is(input, select) {
-    width: 100%;
-}
-
-.resume_form .resume_generate,
-.resume_form .resume_generate:is(:hover, :focus) {
-    grid-column: 1 / span 2;
-    border: none;
-    box-shadow: 0 0 0 gray;
-    background-color: #52ad9c;
-    color: whitesmoke;
-}
-
-
-
-@media screen and (max-width:750px) {
-
-    .resume_form .resume_generate,
-    .resume_form .resume_generate:is(:hover, :focus) {
-        grid-column: 1;
-        border: none;
-        box-shadow: 0 0 0 gray;
-        background-color: #52ad9c;
-        color: whitesmoke;
-    }
-}
-</style>
 <?php
 return ob_get_clean();
 }

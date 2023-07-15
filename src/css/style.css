@@ -1,0 +1,125 @@
+
+
+.selectize-input>input[placeholder] {
+    font-size: 1rem;
+}
+
+.selectize-control.multi .selectize-input.has-items {
+    padding: 0.7em !important;
+}
+
+.selectize-input {
+    padding: 1em;
+    font-size: 1rem;
+}
+
+.resume_data {
+    background-color: white;
+    margin-top: 10px;
+    padding: 20px;
+    box-shadow: 0px 0px 0px gray;
+}
+
+.resume_form {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width:750px) {
+    .resume_form {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+
+
+
+.resume_form label {
+    width: 100%;
+}
+
+.resume_form label p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.resume_form label :is(input, select) {
+    width: 100%;
+}
+
+.resume_form .summary {
+    grid-column: 1 / span 2;
+}
+
+.resume_form .resume_generate,
+.resume_form .resume_generate:is(:hover, :focus),
+.resume_form .summary_generate,
+.resume_form .summary_generate:is(:hover, :focus) {
+    grid-column: 1 / span 2;
+    border: none;
+    box-shadow: 0 0 0 gray;
+    background-color: var(--primary-color);
+    color: whitesmoke;
+}
+
+
+
+@media screen and (max-width:750px) {
+
+    .resume_form .resume_generate,
+    .resume_form .resume_generate:is(:hover, :focus),
+    .resume_form .summary_generate,
+    .resume_form .summary_generate:is(:hover, :focus) {
+        grid-column: 1;
+        border: none;
+        box-shadow: 0 0 0 gray;
+        background-color: var(--primary-color);
+        color: whitesmoke;
+    }
+
+    .resume_form .summary {
+        grid-column: 1;
+    }
+}
+
+
+div:is(.education,.workedin) > div{
+    display: flex;
+    gap:5px;
+    margin-top:5px;
+    margin-bottom:20px;
+}
+
+div:is(.education,.workedin) > div input{
+   width: 50%;
+}
+
+.address_input_container{
+    display: flex;
+    gap: 5px;
+}
+
+.field_label{
+    display: flex;
+    justify-content:space-between;
+    margin-bottom: 10px;
+}
+
+.colors_fields{
+    display: flex;
+    gap:10px;
+    margin:10px 0;
+}
+
+.colors_fields input{
+  width: 50%;
+}
+
+.material-icons{
+    padding: 3px;
+    border-radius:50%;
+    cursor:pointer;
+    background-color: black;
+    color: white;
+}

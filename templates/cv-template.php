@@ -10,18 +10,21 @@ if(!isset($_SESSION['cv_data'])){
     wp_redirect( '/');
 }
 $cv = json_decode(str_replace('\\','',$_SESSION['cv_data']),true);
-$cv['summary']="Highly skilled and motivated WordPress Developer with 4 years of professional experience in designing and developing dynamic websites and web applications. Proficient in utilizing the WordPress platform to create visually appealing and user-friendly websites that meet clients' specific requirements. Adept at customizing themes, implementing plugins, and optimizing websites for performance and search engine optimization (SEO). Strong problem-solving abilities and a keen eye for detail, ensuring efficient and effective project execution. Excellent communication skills and a collaborative approach to working within cross-functional teams. Committed to staying up-to-date with the latest trends and technologies in web development. A proven track record of delivering high-quality projects within deadlines.";
-
 
 require_once (plugin_dir_path(__DIR__).'dompdf/autoload.inc.php');
 use Dompdf\Dompdf;
-$dompdf = new Dompdf();
+use Dompdf\Options;
+
+$options = new Options();
+$options->set('isRemoteEnabled', true);
+
+$dompdf = new Dompdf($options);
+
 ob_start();
 ?>
 
 <div class="resume">
     <div class="resume_left">
-
         <div class="resume_content">
             <div class="resume_item resume_info">
                 <div class="title">
@@ -31,15 +34,15 @@ ob_start();
                 <ul>
                     <li>
                         <div class="icon">
-                            <i class="fas fa-map-signs"></i>
+                            <img src="<?php echo plugin_dir_url(__DIR__).'assets/icons/location.png' ?>" alt="address">
                         </div>
                         <div class="data" contenteditable="true">
-                            <?php echo $cv['address'] ?>
+                            <?php echo $cv['city'] . ' - '.$cv['state']?>
                         </div>
                     </li>
                     <li>
                         <div class="icon">
-                            <i class="fas fa-mobile-alt"></i>
+                            <img src="<?php echo plugin_dir_url(__DIR__).'assets/icons/call.png' ?>" alt="phone">
                         </div>
                         <div class="data" contenteditable="true">
                             <?php echo $cv['phone'] ?>
@@ -47,17 +50,18 @@ ob_start();
                     </li>
                     <li>
                         <div class="icon">
-                            <i class="fas fa-envelope"></i>
+                            <img src="<?php echo plugin_dir_url(__DIR__).'assets/icons/email.png' ?>" alt="email">
                         </div>
                         <div class="data" contenteditable="true">
                             <?php echo $cv['email'] ?>
 
                         </div>
                     </li>
-                    <?php if(isset($cv['portfolio'])): ?>
+                    <?php if(!empty($cv['portfolio'])): ?>
                     <li>
                         <div class="icon">
-                            <i class="fab fa-weebly"></i>
+                            <img src="<?php echo plugin_dir_url(__DIR__).'assets/icons/domain.png' ?>"
+                                alt="profolio-url">
                         </div>
                         <div class="data" contenteditable="true">
                             <?php echo $cv['portfolio'] ?>
@@ -97,22 +101,13 @@ ob_start();
             <div class="title">
                 <p class="bold">About me</p>
             </div>
-            <p contenteditable="true"><?php echo $cv['summary'] ?></p>
+            <p contenteditable="true" style="font-size: 14px;text-align:justify"><?php echo $cv['summary'] ?></p>
         </div>
         <div class="resume_item resume_work">
             <div class="title">
                 <p class="bold">Work Experience</p>
             </div>
             <ul>
-                <?php foreach($cv['workedin'] as $index=>$workedin): ?>
-                <li>
-                    <div class="date"><?php echo $cv['workedin_start'][$index] ?> -
-                        <?php echo $cv['workedin_end'][$index]?:'Present' ?></div>
-                    <div class="info">
-                        <p class="semi-bold"><?php echo  $workedin ?>.</p>
-                    </div>
-                </li>
-                <?php endforeach; ?>
                 <?php foreach($cv['workedin'] as $index=>$workedin): ?>
                 <li>
                     <div class="date"><?php echo $cv['workedin_start'][$index] ?> -
@@ -237,13 +232,18 @@ body {
     color: <?php echo $cv['main_color'] ?>;
     border-radius: 50%;
     margin-right: 15px;
+    position: relative;
     display: inline-block;
     font-size: 16px;
     vertical-align: middle;
 }
 
-.resume .icon i,
-.resume .resume_right .resume_hobby ul li i {
+
+
+.resume .icon img,
+.resume .resume_right .resume_hobby ul li img {
+    width: 18px;
+    height: 18px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -403,7 +403,6 @@ body {
 </style>
 <?php 
 $html = ob_get_clean();
-
 $dompdf->loadHtml($html);
 $dompdf->render();
 $dompdf->stream('output.pdf', ['Attachment' => false]);
