@@ -1,6 +1,6 @@
 const educationTemplate = `
 <div class="education">
-<input type="text" name="education[]" value="Licence Degree at Boumerdes University"
+<input type="text" name="education[]" 
     placeholder="Licence Degree at Boumerdes University">
 <div>
     <input type="number" required name="education_start[]" min="1900" max="2099" step="1"
@@ -13,7 +13,7 @@ const educationTemplate = `
 
 const workdeInTemplate = `
 <div class="workedin">
-            <input type="text" name="workedin[]" value="Curalinc Enterprise as a Wordpress Developer"
+            <input type="text" name="workedin[]" 
                 placeholder="Curalinc Enterprise as a wordpress developer">
             <div>
                 <input type="number" required name="workedin_start[]" min="1900" max="2099" step="1"

@@ -37,7 +37,6 @@ jQuery(".summary_generate").on("click", async function (e) {
   });
 
   const summary = response.data.choices[0].message.content.trim();
-  console.log(response);
   jQuery(".summary_generate").hide();
   jQuery(".resume_generate").show();
   jQuery("textarea[name=summary]").val(summary);
