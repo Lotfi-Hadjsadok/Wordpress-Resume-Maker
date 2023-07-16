@@ -4,8 +4,6 @@
  */
 
 ?>
-
-
 <style>
 :root {
     --primary-color: <?php echo $primary_color ?>;
@@ -41,7 +39,7 @@
     </label>
     <label for="">
         <p>Your Skills *</p>
-        <input id="skills-tags" required name="skills" type="text" placeholder="php,javascript">
+        <input id="skills-tags" required name="skills" type="text" placeholder="php,javascript.">
     </label>
     <label for="">
         <p>Tools Used *</p>

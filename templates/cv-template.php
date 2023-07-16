@@ -9,6 +9,7 @@ session_start();
 if(!isset($_SESSION['cv_data'])){
     wp_redirect( '/');
 }
+
 $cv = json_decode(str_replace('\\','',$_SESSION['cv_data']),true);
 
 require_once (plugin_dir_path(__DIR__).'dompdf/autoload.inc.php');

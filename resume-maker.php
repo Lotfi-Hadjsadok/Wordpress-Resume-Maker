@@ -33,6 +33,7 @@ add_action('wp_enqueue_scripts', 'enqueue_scirpts');
 
 add_action('wp',function(){
     if(isset($_POST['generate_cv'])){
+        do_action('resume_maker_init',$_POST);
         session_start();
         $_SESSION['cv_data'] = json_encode($_POST);
         wp_redirect( home_url('cv'));
