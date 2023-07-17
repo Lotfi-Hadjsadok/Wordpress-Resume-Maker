@@ -7,7 +7,9 @@
 
  if(!defined('ABSPATH'))die;
 
+ // Classes import
  require_once plugin_dir_path(__FILE__).'classes/class-algeria-cities.php'; 
+ require_once plugin_dir_path(__FILE__).'classes/class-general-data.php'; 
 
 
  
@@ -23,7 +25,12 @@ function enqueue_scirpts(){
     wp_enqueue_style( 'my-style', plugin_dir_url(__FILE__) . 'src/css/style.css' );
     wp_enqueue_style( 'material_icons', 'https://fonts.googleapis.com/icon?family=Material+Icons');
 
+
+    /**
+     * Important JS DATA
+     */
     wp_add_inline_script('resume-cv-js','const states_cities = '.json_encode(Algeria_Cities::get_states()), 'footer');
+    wp_add_inline_script('resume-cv-js','const skills = '.json_encode(General_Data::get_skills()), 'footer');
     
 
 }
