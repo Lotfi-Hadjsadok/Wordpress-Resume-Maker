@@ -71,13 +71,13 @@ ob_start();
                     <?php endif; ?>
                 </ul>
             </div>
-            <div class="resume_item resume_skills">
+            <div class="resume_item resume_languages">
                 <div class="title">
-                    <p class="bold">skills</p>
+                    <p class="bold">Coding Languages</p>
                 </div>
                 <ul>
                     <div style="width:100%;display:flex;flex-wrap: wrap">
-                        <?php foreach(explode(',',$cv['skills']) as $skill): ?>
+                        <?php foreach(explode(',',$cv['languages']) as $skill): ?>
                         <span contenteditable="true" class="tag"><?php echo $skill ?></span>
                         <?php endforeach; ?>
                     </div>
@@ -259,7 +259,7 @@ body {
 }
 
 
-.resume .resume_left .resume_skills ul li {
+.resume .resume_left .resume_languages ul li {
     display: flex;
     margin-bottom: 10px;
     color: <?php echo $cv['secondary_color'] ?>;
@@ -267,11 +267,11 @@ body {
     align-items: center;
 }
 
-.resume .resume_left .resume_skills ul li .skill_name {
+.resume .resume_left .resume_languages ul li .skill_name {
     width: 25%;
 }
 
-.resume .resume_left .resume_skills ul li .skill_progress {
+.resume .resume_left .resume_languages ul li .skill_progress {
     width: 60%;
     margin: 0 5px;
     height: 5px;
@@ -279,11 +279,11 @@ body {
     position: relative;
 }
 
-.resume .resume_left .resume_skills ul li .skill_per {
+.resume .resume_left .resume_languages ul li .skill_per {
     width: 15%;
 }
 
-.resume .resume_left .resume_skills ul li .skill_progress span {
+.resume .resume_left .resume_languages ul li .skill_progress span {
     position: absolute;
     top: 0;
     left: 0;

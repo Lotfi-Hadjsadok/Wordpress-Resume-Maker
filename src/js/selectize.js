@@ -1,6 +1,9 @@
 jQuery("#tools-tags").selectize({
   delimiter: ",",
   persist: false,
+  options: tools.map((tool) => ({ text: tool.name, value: tool.name })),
+  openOnFocus: false,
+  closeAfterSelect: true,
   create: function (input) {
     return {
       value: input,
@@ -9,10 +12,10 @@ jQuery("#tools-tags").selectize({
   },
 });
 
-var skillsSelectize = jQuery("#skills-tags").selectize({
+var languagesSelectize = jQuery("#languages-tags").selectize({
   delimiter: ",",
   persist: false,
-  options: skills.map((skill) => ({ text: skill.name, value: skill.name })),
+  options: languages.map((skill) => ({ text: skill.name, value: skill.name })),
   openOnFocus: false,
   closeAfterSelect: true,
   placeholder: "Php,Javascript",

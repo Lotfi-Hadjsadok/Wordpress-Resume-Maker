@@ -12,9 +12,17 @@
            add_action('init',array($this,'init_taxonomies'));
         }
 
-        public static function get_skills(){
+        public static function get_languages(){
             $tags = get_terms(array(
-                'taxonomy' => 'post_tag',
+                'taxonomy' => 'languages',
+                'hide_empty' => false,
+            ));
+            return $tags;            
+        }
+
+        public static function get_tools(){
+            $tags = get_terms(array(
+                'taxonomy' => 'tools',
                 'hide_empty' => false,
             ));
             return $tags;            
@@ -28,48 +36,12 @@
 
 
         public function init_taxonomies(){
-            $this->init_langauges_taxonomy();
-            $this->init_skills_taxonomy();
-        }
-
-        public function init_skills_taxonomy(){
-    
-                $labels_skills = array(
-                    'name'                       => 'Skills',
-                    'singular_name'              => 'Skill',
-                    'menu_name'                  => 'Skills',
-                    'all_items'                  => 'All Skills',
-                    'edit_item'                  => 'Edit Skill',
-                    'view_item'                  => 'View Skill',
-                    'update_item'                => 'Update Skill',
-                    'add_new_item'               => 'Add New Skill',
-                    'new_item_name'              => 'New Skill Name',
-                    'parent_item'                => 'Parent Skill',
-                    'parent_item_colon'          => 'Parent Skill:',
-                    'search_items'               => 'Search Skills',
-                    'popular_items'              => 'Popular Skills',
-                    'separate_items_with_commas' => 'Separate skills with commas',
-                    'add_or_remove_items'        => 'Add or remove skills',
-                    'choose_from_most_used'      => 'Choose from the most used skills',
-                    'not_found'                  => 'No skills found.'
-                );
-            
-                $args_skills = array(
-                    'labels'            => $labels_skills,
-                    'hierarchical'      => true,
-                    'public'            => true,
-                    'show_ui'           => true,
-                    'show_admin_column' => true,
-                    'query_var'         => true,
-                    'rewrite'           => array( 'slug' => 'skills' )
-                );
-            
-                register_taxonomy( 'skills', 'developer', $args_skills );
-            
+            $this->init_languages_taxonomy();
+            $this->init_tools_taxonomy();
         }
 
 
-        public function init_langauges_taxonomy(){
+        public function init_languages_taxonomy(){
             
                 // Add Languages taxonomy
                 $labels_languages = array(
@@ -103,6 +75,42 @@
                 );
             
                 register_taxonomy( 'languages', 'developer', $args_languages );
+        }
+
+        public function init_tools_taxonomy(){
+            
+                // Add tools taxonomy
+                $labels_tools = array(
+                    'name'                       => 'Tools',
+                    'singular_name'              => 'Language',
+                    'menu_name'                  => 'Tools',
+                    'all_items'                  => 'All Tools',
+                    'edit_item'                  => 'Edit Language',
+                    'view_item'                  => 'View Language',
+                    'update_item'                => 'Update Language',
+                    'add_new_item'               => 'Add New Language',
+                    'new_item_name'              => 'New Language Name',
+                    'parent_item'                => 'Parent Language',
+                    'parent_item_colon'          => 'Parent Language:',
+                    'search_items'               => 'Search Tools',
+                    'popular_items'              => 'Popular Tools',
+                    'separate_items_with_commas' => 'Separate Tools with commas',
+                    'add_or_remove_items'        => 'Add or remove Tools',
+                    'choose_from_most_used'      => 'Choose from the most used Tools',
+                    'not_found'                  => 'No tools found.'
+                );
+            
+                $args_tools = array(
+                    'labels'            => $labels_tools,
+                    'hierarchical'      => false,
+                    'public'            => true,
+                    'show_ui'           => true,
+                    'show_admin_column' => true,
+                    'query_var'         => true,
+                    'rewrite'           => array( 'slug' => 'tools' )
+                );
+            
+                register_taxonomy( 'tools', 'developer', $args_tools );
         }
 
 

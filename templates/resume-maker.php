@@ -38,8 +38,8 @@
         <input type="url" name="portfolio" placeholder="https://your-link.com">
     </label>
     <label for="">
-        <p>Your Skills *</p>
-        <input id="skills-tags" required name="skills" type="text">
+        <p>Your Coding Languages *</p>
+        <input id="languages-tags" required name="languages" type="text">
     </label>
     <label for="">
         <p>Tools Used *</p>

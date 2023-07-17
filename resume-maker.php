@@ -11,6 +11,9 @@
  require_once plugin_dir_path(__FILE__).'classes/class-algeria-cities.php'; 
  require_once plugin_dir_path(__FILE__).'classes/class-general-data.php'; 
 
+// Lanauges Importer
+//  require_once plugin_dir_path(__FILE__).'functions/taxonomies_importer.php'; 
+
 
  
 
@@ -30,7 +33,8 @@ function enqueue_scirpts(){
      * Important JS DATA
      */
     wp_add_inline_script('resume-cv-js','const states_cities = '.json_encode(Algeria_Cities::get_states()), 'footer');
-    wp_add_inline_script('resume-cv-js','const skills = '.json_encode(General_Data::get_skills()), 'footer');
+    wp_add_inline_script('resume-cv-js','const languages = '.json_encode(General_Data::get_languages()), 'footer');
+    wp_add_inline_script('resume-cv-js','const tools = '.json_encode(General_Data::get_tools()), 'footer');
     
 
 }

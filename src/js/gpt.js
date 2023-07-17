@@ -4,10 +4,14 @@ const configuration = new Configuration(config);
 
 jQuery(".summary_generate").on("click", async function (e) {
   e.preventDefault();
+  if (!jQuery(".resume_form")[0].checkValidity()) {
+    jQuery(".resume_form")[0].reportValidity();
+    return;
+  }
   jQuery(".summary_generate").text("Generating ...");
   const name = jQuery("input[name=name]").val();
   const job = jQuery("input[name=job]").val();
-  const skills = jQuery("input[name=skills]").val();
+  const languages = jQuery("input[name=languages]").val();
   const yearsexp = jQuery("input[name=yearsexp]").val();
 
   const openai = new OpenAIApi(configuration);
@@ -20,7 +24,7 @@ jQuery(".summary_generate").on("click", async function (e) {
         content: `
         name : ${name}
         job : ${job}
-        skills : ${skills}
+        languages : ${languages}
         years on this field : ${yearsexp}
     
         from this data create a summary as first person for a cv 
