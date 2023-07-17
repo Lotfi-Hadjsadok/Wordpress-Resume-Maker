@@ -54,9 +54,10 @@
         <div class="workedin">
             <input type="text" name="workedin[]" placeholder="Curalinc Enterprise as a wordpress developer">
             <div>
-                <input type="number" required name="workedin_start[]" min="1900" max="2099" step="1"
+                <input type="number" inputmode="numeric" required name="workedin_start[]" min="1900" max="2099" step="1"
                     placeholder="Start Year" />
-                <input type="number" name="workedin_end[]" min="1900" max="2099" step="1" placeholder="End Year" />
+                <input type="number" inputmode="numeric" name="workedin_end[]" min="1900" max="2099" step="1"
+                    placeholder="End Year" />
             </div>
         </div>
         <!-- Worked In repeater here -->
@@ -70,9 +71,10 @@
         <div class="education">
             <input type="text" name="education[]" placeholder="Licence Degree at Boumerdes University">
             <div>
-                <input type="number" required name="education_start[]" min="1900" max="2099" step="1"
-                    placeholder="Start Year" />
-                <input type="number" name="education_end[]" min="1900" max="2099" step="1" placeholder="End Year" />
+                <input type="number" inputmode="numeric" required name="education_start[]" min="1900" max="2099"
+                    step="1" placeholder="Start Year" />
+                <input type="number" inputmode="numeric" name="education_end[]" min="1900" max="2099" step="1"
+                    placeholder="End Year" />
             </div>
         </div>
         <!-- Education Repeater here -->
@@ -80,7 +82,7 @@
 
     <label for="">
         <p>Years of experience in this field *</p>
-        <input type="number" min="0" required name="yearsexp" placeholder="4 years">
+        <input type="number" inputmode="numeric" min="0" required name="yearsexp" placeholder="4 years">
     </label>
 
     <label for="">
