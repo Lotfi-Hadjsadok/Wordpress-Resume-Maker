@@ -81,3 +81,34 @@ function your_custom_page_template($template) {
   // Return the original template
   return $template;
 }
+
+// To make sure user is logged in
+add_action('template_redirect',function(){
+  if(!is_user_logged_in() && !is_page('login')){
+    wp_redirect( '/login');
+    exit;
+  }
+  if(is_user_logged_in() && is_page('login')){
+    wp_redirect( '/');
+    exit;
+  }
+});
+
+
+// Remove Admin bar for non admin
+function remove_admin_bar_for_non_admin() {
+  if (!current_user_can('administrator') && !is_admin()) {
+      show_admin_bar(false);
+  }
+}
+add_action('after_setup_theme', 'remove_admin_bar_for_non_admin');
+
+
+// Logout url
+function add_logout_url_header(){
+  if(is_user_logged_in()){
+    echo '<a class="logout_url" href="'.wp_logout_url().'">Logout</a>';
+
+  }
+}
+add_action('get_header','add_logout_url_header');
