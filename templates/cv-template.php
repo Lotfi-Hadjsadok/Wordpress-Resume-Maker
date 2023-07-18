@@ -76,7 +76,7 @@ ob_start();
                     <p class="bold">Coding Languages</p>
                 </div>
                 <ul>
-                    <div style="width:100%;display:flex;flex-wrap: wrap">
+                    <div class="languages_items">
                         <?php foreach(explode(',',$cv['languages']) as $skill): ?>
                         <span contenteditable="true" class="tag"><?php echo $skill ?></span>
                         <?php endforeach; ?>
@@ -88,7 +88,7 @@ ob_start();
                     <p class="bold">Tools Used</p>
                 </div>
                 <ul>
-                    <div style="width:100%;display:flex;flex-wrap: wrap">
+                    <div class="tools_items">
                         <?php foreach(explode(',',$cv['tools']) as $tool): ?>
                         <span contenteditable="true" class="tag"><?php echo $tool ?></span>
                         <?php endforeach; ?>
@@ -176,7 +176,7 @@ body {
 }
 
 .resume .resume_left {
-    width: 280px;
+    width: 258px;
     height: 100%;
     background: <?php echo $cv['main_color'] ?>;
 }
@@ -209,6 +209,7 @@ body {
 
 .resume .resume_item {
     padding: 25px 0;
+
     border-bottom: 2px solid <?php echo $cv['secondary_color'] ?>;
 }
 
@@ -357,6 +358,8 @@ body {
     background: <?php echo $cv['main_color'] ?>;
 }
 
+
+
 .resume .resume_right .resume_hobby ul {
     display: flex;
     justify-content: space-between;
@@ -390,16 +393,16 @@ body {
 }
 
 
-.tags {
-    display: flex;
-    flex-wrap: wrap;
-}
-
 .tag {
     background-color: <?php echo $cv['secondary_color'] ?>;
     border-radius: 4px;
     padding: 4px 8px;
-    margin: 4px;
+}
+
+
+.languages_items,
+.tools_items {
+    line-height: 30px;
 }
 </style>
 <?php 
