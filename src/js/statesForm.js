@@ -14,7 +14,7 @@ jQuery("select[name=state]").append(`
 `);
 states.forEach((state) => {
   jQuery("select[name=state]").append(`
-    <option value="${state.wilaya_code}">${state.wilaya_name_ascii}</option>
+    <option value="${state.wilaya_name_ascii}">${state.wilaya_name_ascii}</option>
     `);
 });
 
@@ -22,9 +22,9 @@ jQuery("select[name=city]").append(`
 <option selected disabled value="">City</option>
 `);
 
-function get_cities(stateCode) {
+function get_cities(wilaya_name_ascii) {
   return states_cities.filter(
-    (state_city) => parseInt(state_city.wilaya_code) === parseInt(stateCode)
+    (state_city) => state_city.wilaya_name_ascii === wilaya_name_ascii
   );
 }
 
